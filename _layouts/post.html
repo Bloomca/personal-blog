@@ -1,0 +1,63 @@
+---
+layout: default
+---
+
+<header class="page-heading">
+  <h2 class="page-title">
+    {{ page.title}}
+  </h2>
+  <p class="meta published-date">
+    Опубликовано
+  {% assign m = page.date | date: "%-m" %}
+  {{ page.date | date: "%-d" }}
+  {% case m %}
+    {% when '1' %}января
+    {% when '2' %}февраля
+    {% when '3' %}марта
+    {% when '4' %}апреля
+    {% when '5' %}мая
+    {% when '6' %}июня
+    {% when '7' %}июля
+    {% when '8' %}августа
+    {% when '9' %}сентября
+    {% when '10' %}октября
+    {% when '11' %}ноября
+    {% when '12' %}декабря
+  {% endcase %}
+  {{ page.date | date: "%Y" }}
+
+  </p>
+</header>
+
+<div id="post" class="textual-content">
+  {{ content }}
+</div>
+
+<div id="related">
+  <h2>Почитать ещё</h2>
+  <ul class="">
+    {% for post in site.related_posts limit:3 %}
+    <li>
+      <span>
+        {% assign m = post.date | date: "%-m" %}
+        {{ page.date | date: "%-d" }}
+        {% case m %}
+          {% when '1' %}января
+          {% when '2' %}февраля
+          {% when '3' %}марта
+          {% when '4' %}апреля
+          {% when '5' %}мая
+          {% when '6' %}июня
+          {% when '7' %}июля
+          {% when '8' %}августа
+          {% when '9' %}сентября
+          {% when '10' %}октября
+          {% when '11' %}ноября
+          {% when '12' %}декабря
+        {% endcase %}
+        {{ page.date | date: "%-Y" }}
+        &raquo;</span> <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
